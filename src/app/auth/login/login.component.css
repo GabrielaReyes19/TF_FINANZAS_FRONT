@@ -1,0 +1,53 @@
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-image: url('/assets/background.jpg'); /* Ruta a tu imagen */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 2;
+}
+
+body{
+    background-image: url('src/assets/img/background1.jpg');
+}
+.login-container{
+    background-color: rgba(248, 75, 75, 0.85);
+    border-color: rgba(248, 75, 75, 0.85);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 3px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button[disabled] {
+  background-color: #cccccc;
+}
+
+small {
+  color: red;
+}
