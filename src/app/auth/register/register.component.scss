@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+.register-container {
+    background-size: cover; /* Ajusta según sea necesario */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+form {
+    background-color: rgba(248, 75, 75, 1); /* Color de fondo similar a la imagen */
+    padding: 20px;
+    max-width: 1200px;
+    min-height: 100vh;
+}
+
+h1 {
+    color: white;
+    margin-top: 90px;
+    margin-bottom: 60px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    margin-left: 35px;
+}
+
+div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    color: white;
+    margin-bottom: 5px;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 22px); /* Ajusta el ancho considerando el relleno */
+    padding: 10px;
+    border: 1px solid #c0392b;
+    border-radius: 4px;
+    background-color: #5c2b2b;
+    color: white;
+}
+
+button {
+    padding: 10px;
+    background-color: rgba(124, 64, 8, 1);
+    border: none;
+    border-radius: 40px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    margin-left: 35px;
+    margin-top: 150px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+button:hover {
+    background-color: rgb(26, 26, 26);
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 35px;
+}
+
+.form-group {
+    width: 48%;
+}
+
+.form-group label {
+    display: block;
+}
+
+.location-fields .form-group,
+.name-fields .form-group {
+    width: 48%;
+}
+
+.location-fields .form-group:not(:last-child),
+.name-fields .form-group:not(:last-child) {
+    margin-right: 50px;
+}
+
+.register-container .form-group {
+    margin-bottom: 1rem;
+}
