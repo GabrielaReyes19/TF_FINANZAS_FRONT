@@ -1,3 +1,4 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <body>
   <div class="login-container">
     <h1>RedVelvet Bakery</h1>
@@ -17,7 +18,9 @@
           <small *ngIf="password?.errors?.['required']">Contraseña es requerida.</small>
         </div>
       </div>
-      <button type="submit" [disabled]="loginForm.invalid">Ingresar</button>
+      <button type="submit" [disabled]="loginForm.invalid" class="center-button">Ingresar</button>    
+      <p class="forgot-password"><a href="#">Olvidé mi contraseña</a></p>
+      <p class="register-link">¿No tienes una cuenta? <a href="#">Regístrate</a></p>
     </form>
   </div>
 </body>
