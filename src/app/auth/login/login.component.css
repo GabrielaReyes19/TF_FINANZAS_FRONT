@@ -68,6 +68,10 @@ button[disabled] {
   margin-top: 50px;
 }
 
+button:hover {
+  background-color: rgb(26, 26, 26);
+}
+
 small {
   color: rgb(25, 0, 248);
   font-family: "Inter", sans-serif;
