@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 .register-container {
+    background-image: url('/assets/img/background2.jpg');
     background-size: cover; /* Ajusta según sea necesario */
     background-position: center;
     background-repeat: no-repeat;
@@ -91,4 +92,9 @@ button:hover {
 
 .register-container .form-group {
     margin-bottom: 1rem;
+}
+
+.submit a{
+    color: white;
+    text-decoration: none;
 }
