@@ -1,0 +1,26 @@
+.navbar {
+    background-color: #ee4b4b;
+    padding: 1rem;
+
+    .navbar-brand {
+        text-decoration: none;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 24px;
+        margin-right: 3rem;
+    }
+
+    .navbar-nav {
+        .nav-item {
+            text-decoration: none;
+            color: white;
+            margin-right: 3rem;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

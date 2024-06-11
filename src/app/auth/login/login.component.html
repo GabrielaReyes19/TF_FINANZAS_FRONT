@@ -4,7 +4,7 @@
     <h1>RedVelvet Bakery</h1>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div>
-        <label for="email">Correo o nombre de usuario</label>
+        <label for="email">Correo</label>
         <input id="email" formControlName="email" type="email">
         <div *ngIf="email?.invalid && email?.touched">
           <small *ngIf="email?.errors?.['required']">Email es requerido.</small>
