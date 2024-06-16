@@ -5,6 +5,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component'; 
 import { RegistroClienteComponent } from './pages/registro-cliente/registro-cliente.component';
+import { ProductosComponent } from './pages/productos/productos.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/inicio', pathMatch:'full'},
@@ -12,6 +13,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'clientes', component: RegistroClienteComponent },
+  { path: 'productos', component: ProductosComponent },
+
 ];
 
 @NgModule({

@@ -11,6 +11,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { RegistroClienteComponent } from './pages/registro-cliente/registro-cliente.component';
+import { ProductosComponent } from './pages/productos/productos.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { RegistroClienteComponent } from './pages/registro-cliente/registro-clie
     LoginComponent,
     RegisterComponent,
     ResetPasswordComponent,
-    RegistroClienteComponent
+    RegistroClienteComponent,
+    ProductosComponent,
+
   ],
   imports: [
     BrowserModule,

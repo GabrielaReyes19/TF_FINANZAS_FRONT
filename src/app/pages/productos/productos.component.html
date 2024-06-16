@@ -1,0 +1,109 @@
+<div id="layout-producto-container">
+    <div class="layout-containers-producto">
+      <div class="producto-container">
+        <h1>Registro de Producto</h1>
+        <form [formGroup]="productoForm" (ngSubmit)="onSubmitProducto()">
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input
+              id="nombre"
+              formControlName="nombre"
+              type="text"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input
+              id="precio"
+              formControlName="precio"
+              type="text"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <input
+              id="descripcion"
+              formControlName="descripcion"
+              type="text"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="stock">Stock:</label>
+            <input
+              id="stock"
+              formControlName="stock"
+              type="text"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label for="tipoProducto_id">Tipo de Producto:</label>
+            <select id="tipoProducto_id" formControlName="tipoProducto_id" class="form-control">
+              <option *ngFor="let tipo of tiposProducto" [value]="tipo._id">{{ tipo.nombre }}</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Registrar Producto</button>
+        </form>
+      </div>
+  
+      <div class="tipo-producto-container">
+        <h1>Registrar Tipo de Producto</h1>
+        <form [formGroup]="tipoProductoForm" (ngSubmit)="onSubmitTipoProducto()">
+          <div class="form-group">
+            <label for="tipoNombre">Nombre:</label>
+            <input
+              id="tipoNombre"
+              formControlName="nombre"
+              type="text"
+              class="form-control"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Registrar Tipo de Producto</button>
+        </form>
+      </div>
+  
+      <div class="layout-lista-productos-container">
+        <div class="lista-productos-container">
+          <h1 id="titulo-productos">Productos</h1>
+          <h5 id="subtitulo-productos">Busca productos por nombre</h5>
+          <div class="input-group">
+            <input
+              type="text"
+              id="buscar-nombre"
+              class="form-control"
+              placeholder="Buscar por nombre"
+              [(ngModel)]="searchNombre"
+              (input)="onSearch()"
+            />
+            <button class="btn-buscar" type="button" (click)="onSearch()">.</button>
+          </div>
+          <div id="container-tabla-productos">
+            <table id="tabla-productos">
+              <thead class="custom-thead">
+                <tr class="custom-tr">
+                  <th class="custom-th">Nombre</th>
+                  <th class="custom-th">Precio</th>
+                  <th class="custom-th">Descripción</th>
+                  <th class="custom-th">Stock</th>
+                  <th class="custom-th">Tipo de Producto</th>
+                </tr>
+              </thead>
+              <tbody class="custom-tbody">
+                <tr class="custom-tr" *ngFor="let producto of filteredProductos">
+                  <td class="custom-td">{{ producto.nombre }}</td>
+                  <td class="custom-td">{{ producto.precio }}</td>
+                  <td class="custom-td">{{ producto.descripcion }}</td>
+                  <td class="custom-td">{{ producto.stock }}</td>
+                  <td class="custom-td">{{ producto.tipoProducto_id.nombre }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
