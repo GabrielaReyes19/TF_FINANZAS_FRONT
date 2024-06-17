@@ -13,6 +13,9 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { VentasComponent } from './pages/ventas/ventas.component';
 import { RegistroVentaComponent } from './pages/registro-venta/registro-venta.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { InventarioAnadirComponent } from './pages/inventario-anadir/inventario-anadir.component';
+import { InventarioModificarComponent } from './pages/inventario-modificar/inventario-modificar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { RegistroVentaComponent } from './pages/registro-venta/registro-venta.co
     ResetPasswordComponent,
     NavbarComponent,
     VentasComponent,
-    RegistroVentaComponent
+    RegistroVentaComponent,
+    PerfilComponent,
+    InventarioAnadirComponent,
+    InventarioModificarComponent
   ],
   imports: [
     BrowserModule,
