@@ -10,7 +10,9 @@ import { ProductsComponent }  from './pages/products/products.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { CreditsComponent } from './pages/credits/credits.component';
 import { AnadirCreditoComponent } from './pages/anadir-credito/anadir-credito.component';
-
+import { InventarioAnadirComponent } from './pages/inventario-anadir/inventario-anadir.component';
+import { InventarioModificarComponent } from './pages/inventario-modificar/inventario-modificar.component';
+import { InventarioComponent } from './pages/inventario/inventario.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/inicio', pathMatch:'full'},
@@ -24,7 +26,10 @@ const routes: Routes = [
   { path: 'finanzas', component: FinanzasComponent },
   { path: 'credits', component: CreditsComponent },
   { path: 'anadir-credito', component: AnadirCreditoComponent },
-
+  { path: 'inventario-anadir', component: InventarioAnadirComponent },
+  { path: 'inventario-modificar', component: InventarioModificarComponent },
+  { path: 'inventario', component: InventarioComponent },
+  
 ];
 
 @NgModule({

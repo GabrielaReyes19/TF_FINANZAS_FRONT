@@ -20,6 +20,7 @@ import { InventarioModificarComponent } from './pages/inventario-modificar/inven
 import { ProductsComponent } from './pages/products/products.component';
 import { CreditsComponent } from './pages/credits/credits.component';
 import { AnadirCreditoComponent } from './pages/anadir-credito/anadir-credito.component';
+import { InventarioComponent } from './pages/inventario/inventario.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AnadirCreditoComponent } from './pages/anadir-credito/anadir-credito.co
     InventarioModificarComponent,
     ProductsComponent,
     CreditsComponent,
-    AnadirCreditoComponent
+    AnadirCreditoComponent,
+    InventarioComponent
   ],
   imports: [
     BrowserModule,
