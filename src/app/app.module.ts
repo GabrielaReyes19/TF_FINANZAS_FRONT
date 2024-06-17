@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './shared/header/header.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { FinanzasComponent } from './pages/finanzas/finanzas.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
@@ -18,12 +18,14 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { InventarioAnadirComponent } from './pages/inventario-anadir/inventario-anadir.component';
 import { InventarioModificarComponent } from './pages/inventario-modificar/inventario-modificar.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { CreditsComponent } from './pages/credits/credits.component';
+import { AnadirCreditoComponent } from './pages/anadir-credito/anadir-credito.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    DashboardComponent,
+    FinanzasComponent,
     LoginComponent,
     RegisterComponent,
     ResetPasswordComponent,
@@ -33,7 +35,9 @@ import { ProductsComponent } from './pages/products/products.component';
     PerfilComponent,
     InventarioAnadirComponent,
     InventarioModificarComponent,
-    ProductsComponent
+    ProductsComponent,
+    CreditsComponent,
+    AnadirCreditoComponent
   ],
   imports: [
     BrowserModule,
