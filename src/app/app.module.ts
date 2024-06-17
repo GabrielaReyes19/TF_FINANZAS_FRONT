@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { RegistroVentaComponent } from './pages/registro-venta/registro-venta.co
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { InventarioAnadirComponent } from './pages/inventario-anadir/inventario-anadir.component';
 import { InventarioModificarComponent } from './pages/inventario-modificar/inventario-modificar.component';
+import { ProductsComponent } from './pages/products/products.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +32,15 @@ import { InventarioModificarComponent } from './pages/inventario-modificar/inven
     RegistroVentaComponent,
     PerfilComponent,
     InventarioAnadirComponent,
-    InventarioModificarComponent
+    InventarioModificarComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
