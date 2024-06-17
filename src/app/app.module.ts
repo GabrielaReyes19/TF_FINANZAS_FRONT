@@ -10,6 +10,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { VentasComponent } from './pages/ventas/ventas.component';
+import { RegistroVentaComponent } from './pages/registro-venta/registro-venta.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    NavbarComponent,
+    VentasComponent,
+    RegistroVentaComponent
   ],
   imports: [
     BrowserModule,

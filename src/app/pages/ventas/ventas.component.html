@@ -1,0 +1,81 @@
+<app-navbar></app-navbar>
+
+<h1>Ventas</h1>
+
+<h2>Información general</h2>
+
+<div class="container">
+    <div class="info-section">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" >
+        </div>
+        <div class="form-group">
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" name="dni">
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="form-group">
+            <label for="fecha">Fecha:</label>
+            <span id="fecha">16 de junio de 2024</span> <!-- Llenado automático por el sistema -->
+        </div>
+        <div class="form-group">
+            <label for="boleta">N° Boleta:</label>
+            <span id="boleta">000541</span> <!-- Llenado automático por el sistema -->
+        </div>
+        <div class="payment-method">
+            <label for="forma-pago">Forma de pago:</label>
+            <label>
+                <input type="radio" id="efectivo" name="forma-pago" checked>
+                Efectivo
+            </label>
+            <label>
+                <input type="radio" id="tarjeta" name="forma-pago">
+                Tarjeta
+            </label>
+        </div>
+    </div>
+</div>
+
+<h3>Productos</h3>
+
+<div class="container">
+    <div class="info-section">
+        <div class="form-group">
+            <label for="nombre">Producto:</label>
+            <input type="text" id="nombre" name="nombre">
+        </div>
+        <div class="form-group">
+            <label for="apellido">Cantidad:</label>
+            <input type="text" id="apellido" name="apellido" >
+        </div>
+
+        <div class="form-group">
+            <button type="button1">Añadir a la lista</button>
+        </div>
+
+    </div>
+</div>
+
+<h3>Lista de Productos</h3>
+
+<div class="container" id="listaProductos">
+    <!-- Aquí se añadirán dinámicamente los productos -->
+     <br><br><br><br><br><br><br><br><br><br>
+</div>
+
+<div class="away">
+    <button type="button">Cancelar</button>
+    <button type="button">Generar Boleta</button>
+</div>
+
+<div class="away2">
+    <label for="total">Total a pagar: </label>
+    <span id="totalPagar">$0.00</span>
+</div>
