@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+#layout-registro-cliente-container {
+  background-image: url('../../../assets/img/background1.jpg');
+  height: calc( 100% - 60px );
+  background-position: center;
+  position: relative;
+}
+
+.layout-containers-registro-cliente{
+    display: flex;
+    width: 100%;
+    background-color: rgba(254, 254, 255,0.8);
+    flex-direction: row;
+    height: 100%;
+}
+
+.registro-container {
+    display: block;
+  max-width: 600px;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgba(248, 75, 75, 0.85);
+  border-color: rgba(248, 75, 75, 0.85);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: rgba(30, 30, 30, 0.6);
+  color: white;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+}
+
+button[disabled] {
+  background-color: rgba(124, 64, 8, 1);
+  cursor: not-allowed;
+}
+
+button:not([disabled]):hover {
+  background-color: #0056b3;
+}
+
+.container {
+  padding: 20px;
+}
+
+.forgot-password,
+.register-link {
+  text-align: center;
+  margin-top: 20px;
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+.forgot-password a,
+.register-link a {
+  color: white;
+  text-decoration: underline;
+}
+
+.register-link {
+  margin-bottom: 0;
+}
+
+.layout-lista-clientes-container{
+
+    width: 100%;
+    height: 500px;
+}
+.lista-clientes-container{
+    padding: 30px;
+  
+}
+#titulo-clientes-frecuentes{
+    text-align: left;
+    color: rgb(37, 37, 37);
+}
+
+/* Tabla de Clientes */
+#tabla-clientes-frecuentes {
+  width: 100%;
+
+  border-collapse: collapse;
+  font-family: "Poppins", sans-serif;
+  margin-top: 20px;
+  background-color: white;
+
+}
+
+  #container-tabla-clientes{
+    max-height: 600px; /* Altura máxima de la tabla */
+    overflow-y: scroll; /* Agrega un scroll vertical si es necesario */
+  }
+  .custom-table {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-height: 500px; /* Altura máxima de la tabla */
+    overflow-y: auto; /* Agrega un scroll vertical si es necesario */
+  }
+  
+  .custom-thead {
+    background-color: #0c64c2;
+    color: white;
+  }
+  
+  .custom-th, .custom-td {
+    padding: 12px 15px;
+    text-align: left;
+  }
+  
+  .custom-th {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .custom-tbody tr {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .custom-tbody tr:nth-of-type(even) {
+    background-color: #b4d0f5;
+  }
+  
+  .custom-tbody tr:hover {
+ 
+  }
+  
+  .custom-tr:last-child {
+    border-bottom: 2px solid #0056b3;
+  }
+  
+  .custom-td {
+    font-size: 14px;
+  }
+  .input-group{
+    display: flex;
+    flex-direction: row;
+  }
+  #buscar-dni {
+    width: 20%;
+    padding: 0px !important;
+    border: 0px solid #ccc;
+    border-radius: 0px;
+    background-color: white;
+    color: black;
+    height: 35px !important;
+  }
+  .btn-buscar {
+    width: auto; /* Ancho automático para ajustarse al contenido */
+    padding: 5px 10px; /* Espaciado interno del botón */
+    height: 35px; /* Altura del botón */
+    border: none; /* Elimina el borde del botón */
+    border-radius: 3px; /* Borde redondeado */
+    background-color: white; /* Color de fondo transparente */
+    background-image: url('https://cdn-icons-png.flaticon.com/512/107/107122.png'); /* Imagen de fondo */
+    background-size: 20px; /* Tamaño de la imagen de fondo */
+    background-repeat: no-repeat; /* No repetir la imagen de fondo */
+    background-position: center; /* Centra la imagen de fondo */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    width: 35px;
+    margin: none !important;
+    padding: 10px !important;
+    height: 35px !important;
+    border-radius: 0px;
+    background-image: url('https://cdn-icons-png.flaticon.com/512/107/107122.png');
+    background-size: 50%; /* Ajusta el tamaño de la imagen al 50% del tamaño original */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    color: transparent;
+  }
+  
+  
+  #subtitulo-clientes-frecuentes{
+    font-size: 20px !important;
+    color: #363636 !important;
+  }

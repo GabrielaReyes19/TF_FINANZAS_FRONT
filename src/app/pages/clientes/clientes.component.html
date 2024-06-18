@@ -1,0 +1,140 @@
+<app-navbar></app-navbar>
+<div id="layout-registro-cliente-container">
+    <div class="layout-containers-registro-cliente">
+      <div class="registro-container">
+        <h1>Registro de Cliente</h1>
+        <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+          <!-- Form fields for clienteForm -->
+          <div class="form-group">
+            <label for="nombres">Nombres:</label>
+            <input
+              id="nombres"
+              formControlName="nombres"
+              type="text"
+              class="form-control"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="apellidos">Apellidos:</label>
+            <input
+              id="apellidos"
+              formControlName="apellidos"
+              type="text"
+              class="form-control"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="dni">DNI:</label>
+            <input
+              id="dni"
+              formControlName="dni"
+              type="text"
+              class="form-control"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="correo">Correo:</label>
+            <input
+              id="correo"
+              formControlName="correo"
+              type="email"
+              class="form-control"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input
+              id="telefono"
+              formControlName="telefono"
+              type="text"
+              class="form-control"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="tasaMoratoria">Tasa Moratoria:</label>
+            <input
+              id="tasaMoratoria"
+              formControlName="tasaMoratoria"
+              type="text"
+              class="form-control"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="limiteCredito">Límite de Crédito:</label>
+            <input
+              id="limiteCredito"
+              formControlName="limiteCredito"
+              type="text"
+              class="form-control"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="fechaPagoMensual">Fecha de Pago Mensual:</label>
+            <input
+              id="fechaPagoMensual"
+              formControlName="fechaPagoMensual"
+              type="date"
+              class="form-control"
+            />
+          </div>
+  
+          <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+      </div>
+      <div class="layout-lista-clientes-container">
+        <div class="lista-clientes-container">
+          <h1 id="titulo-clientes-frecuentes">Clientes</h1>
+          <h5 id="subtitulo-clientes-frecuentes">Busca clientes según su DNI</h5>
+          <div class="input-group">
+            <input
+              type="text"
+              id="buscar-dni"
+              class="form-control"
+              placeholder="Buscar por DNI"
+              [(ngModel)]="searchDNI"
+              (input)="onSearch()"
+            />
+            <button class="btn-buscar" type="button" (click)="onSearch()">
+              .
+            </button>
+          </div>
+          <div id="container-tabla-clientes">
+            <table id="tabla-clientes-frecuentes">
+              <thead class="custom-thead">
+                <tr class="custom-tr">
+                  <th class="custom-th">Nombres</th>
+                  <th class="custom-th">Apellidos</th>
+                  <th class="custom-th">DNI</th>
+                  <th class="custom-th">Correo</th>
+                  <th class="custom-th">Teléfono</th>
+                  <th class="custom-th">Tasa Moratoria</th>
+                  <th class="custom-th">Límite de Crédito</th>
+                  <th class="custom-th">Fecha de Pago Mensual</th>
+                </tr>
+              </thead>
+              <tbody class="custom-tbody">
+                <tr class="custom-tr" *ngFor="let cliente of filteredClientes">
+                  <td class="custom-td">{{ cliente.nombres }}</td>
+                  <td class="custom-td">{{ cliente.apellidos }}</td>
+                  <td class="custom-td">{{ cliente.dni }}</td>
+                  <td class="custom-td">{{ cliente.correo }}</td>
+                  <td class="custom-td">{{ cliente.telefono }}</td>
+                  <td class="custom-td">{{ cliente.tasaMoratoria }}</td>
+                  <td class="custom-td">{{ cliente.limiteCredito }}</td>
+                  <td class="custom-td">{{ formatFechaPago(cliente.fechaPagoMensual) }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

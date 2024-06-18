@@ -1,3 +1,4 @@
 export const environment = {
-    production: false,
-  };
+  production: false,
+    apiUrl: 'http://lubuntu.michaelcuadros.com:3000'
+};

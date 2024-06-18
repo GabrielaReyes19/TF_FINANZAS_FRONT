@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { CreditsComponent } from './pages/credits/credits.component';
 import { AnadirCreditoComponent } from './pages/anadir-credito/anadir-credito.component';
 import { InventarioComponent } from './pages/inventario/inventario.component';
+import { ClientesComponent } from './pages/clientes/clientes.component';
 
 @NgModule({
   declarations: [
@@ -39,14 +40,16 @@ import { InventarioComponent } from './pages/inventario/inventario.component';
     ProductsComponent,
     CreditsComponent,
     AnadirCreditoComponent,
-    InventarioComponent
+    InventarioComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

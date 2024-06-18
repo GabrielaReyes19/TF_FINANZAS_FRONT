@@ -13,6 +13,7 @@ import { AnadirCreditoComponent } from './pages/anadir-credito/anadir-credito.co
 import { InventarioAnadirComponent } from './pages/inventario-anadir/inventario-anadir.component';
 import { InventarioModificarComponent } from './pages/inventario-modificar/inventario-modificar.component';
 import { InventarioComponent } from './pages/inventario/inventario.component';
+import { ClientesComponent } from './pages/clientes/clientes.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/inicio', pathMatch:'full'},
@@ -29,7 +30,7 @@ const routes: Routes = [
   { path: 'inventario-anadir', component: InventarioAnadirComponent },
   { path: 'inventario-modificar', component: InventarioModificarComponent },
   { path: 'inventario', component: InventarioComponent },
-  
+  { path: 'clientes', component: ClientesComponent },
 ];
 
 @NgModule({
