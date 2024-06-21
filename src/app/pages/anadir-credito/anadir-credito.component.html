@@ -1,60 +1,71 @@
 <app-navbar></app-navbar>
 <h1>Créditos</h1>
-<h2>Monto</h2>
-<div class="container">
+<form [formGroup]="creditoForm" (ngSubmit)="onSubmit()">
+  <h2>Monto</h2>
+  <div class="container">
     <div class="info-section">
-        <div class="form-group">
-            <label for="monto">Monto:</label>
-            <input type="text" id="monto" name="monto" title="Monto">
-        </div>
-        <div class="form-group">
-            <label for="tipo">Tipo de crédito:</label>
-            <input type="text" id="tipo" name="tipo" title="Tipo">
-        </div>
+      <div class="form-group">
+        <label for="monto">Monto:</label>
+        <input type="text" id="monto" formControlName="monto" title="Monto">
+      </div>
+      <div class="form-group">
+        <label for="tipo">Tipo de crédito:</label>
+        <select id="tipo" formControlName="TipoCredito_id" title="Tipo">
+          <option *ngFor="let tipo of tiposCredito" [value]="tipo._id">{{ tipo.nombre }}</option>
+        </select>
+      </div>
     </div>
-</div>
-<br>
-<h2>Tiempo</h2>
-<div class="container">
+  </div>
+  <br>
+  <h2>Tiempo</h2>
+  <div class="container">
     <div class="info-section">
-        <div class="form-group">
-            <label for="Inicio">Fecha de Inicio:</label>
-            <input type="text" id="inicio" name="inicio" title="Inicio">
-        </div>
-        <div class="form-group">
-            <label for="Vencimiento">Fecha de vencimiento:</label>
-            <input type="text" id="vencimiento" name="vencimiento" title="Vencimiento">
-        </div>
+      <div class="form-group">
+        <label for="fecha">Fecha del Credito:</label>
+        <input type="text" id="fecha" formControlName="FechaCredito" title="Fecha">
+      </div>
+      <div class="form-group">
+        <label for="cuotas">Cuotas:</label>
+        <input type="text" id="numeroCuotas" formControlName="numeroCuotas" title="numeroCuotas">
+      </div>
+      <div class="form-group">
+        <label for="cuotas">Plazo de Gracia:</label>
+        <input type="text" id="plazoGracia" formControlName="plazoGracia" title="plazoGracia">
+      </div>
     </div>
-</div>
+  </div>
 
-<h2>Interés</h2>
-<div class="container">
+  <h2>Interés</h2>
+  <div class="container">
     <div class="info-section">
-        <div class="form-group">
-            <label for="Tasa">Tasa de interés:</label>
-            <input type="text" id="tasa" name="tasa" title="Tasa">
-        </div>
-        <div class="form-group">
-            <label for="Producto">Producto:</label>
-            <input type="text" id="producto" name="producto" title="Producto">
-        </div>
+      <div class="form-group">
+        <label for="tipoTasa">Tipo de Tasa de interés:</label>
+        <select id="tipoTasa" formControlName="TipoInteres_id" title="TipoTasa">
+          <option *ngFor="let tipo of tiposInteres" [value]="tipo._id">{{ tipo.nombre }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tasa">Tasa de interés:</label>
+        <input type="text" id="tasa" formControlName="tasaInteres" title="Tasa">
+      </div>
     </div>
 
     <div class="info-section">
-        <div class="form-group">
-            <label for="Cliente">Seleccionar cliente:</label>
-            <input type="text" id="cliente" name="cliente" title="Cliente">
-        </div>
-        <br><br><br><br><br>
-        <div class="form-group">
-            <label for="DNI">DNI:</label>
-            <input type="text" id="dni" name="dni" title="DNI">
-        </div>
+      <div class="form-group">
+        <label for="dni">Busca el cliente por DNI:</label>
+        <input type="text" id="dni" formControlName="dni" title="DNI">
+      </div>
+      <div class="form-group">
+        <label for="cliente">Seleccionar cliente:</label>
+        <select id="cliente" formControlName="Cliente_id" title="Cliente">
+          <option *ngFor="let cliente of clientes" [value]="cliente._id">{{ cliente.nombres }} {{ cliente.apellidos }}</option>
+        </select>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="away">
+  <div class="away">
     <a href="/credits"><button type="button">Cancelar</button></a>
-    <button type="button">Generar Boleta</button>
-</div>
+    <button type="submit">Generar Boleta</button>
+  </div>
+</form>
