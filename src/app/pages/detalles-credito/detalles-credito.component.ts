@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import * as moment from 'moment';
+import 'moment/locale/es';
 import { environment } from 'src/enviroments/enviroment';
 
 @Component({
@@ -29,6 +31,11 @@ export class DetallesCreditoComponent implements OnInit {
       data => {
         this.credito = data;
         this.cuotasFiltradas = this.credito.cuotas; // Inicialmente mostrar todas las cuotas
+        this.credito.cuotas = this.credito.cuotas.map((cuota: any) => {
+          cuota.mesFormateado = moment(cuota.mes).locale('es').format('MMMM YYYY');
+          cuota.fechaFormateada = moment(cuota.mes).locale('es').format('LL');
+          return cuota;
+        });
       },
       error => {
         console.error('Error fetching credit details', error);
@@ -37,7 +44,7 @@ export class DetallesCreditoComponent implements OnInit {
   }
 
   formatFecha(fecha: string): string {
-    return new Date(fecha).toLocaleDateString();
+    return moment(fecha).locale('es').format('LL');
   }
 
   filtroCuotas(estado: string): void {
@@ -48,5 +55,16 @@ export class DetallesCreditoComponent implements OnInit {
     } else if (estado === 'inactivo') {
       this.cuotasFiltradas = this.credito.cuotas.filter((cuota: any) => !cuota.estado);
     }
+  }
+
+  filtroPorMes(): void {
+    const mes = prompt('Ingrese el mes (en formato MMMM YYYY, por ejemplo "junio 2024"):');
+    if (mes) {
+      this.cuotasFiltradas = this.credito.cuotas.filter((cuota: any) => cuota.mesFormateado === mes.toLowerCase());
+    }
+  }
+
+  filtroCuotasMontoCero(): void {
+    this.cuotasFiltradas = this.credito.cuotas.filter((cuota: any) => cuota.monto === 0);
   }
 }

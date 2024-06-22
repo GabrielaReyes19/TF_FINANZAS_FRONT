@@ -6,6 +6,11 @@ $text-color: #343a40;
 $border-radius: 0.25rem;
 $success-color: #28a745;
 $danger-color: #dc3545;
+$mora-baja-color: #ffeb3b;
+$mora-media-color: #ff9800;
+$mora-alta-color: #f44336;
+$pagado-color: #4caf50;
+$button-color: #ffffff;
 
 // Global Styles
 body {
@@ -53,13 +58,13 @@ body {
 }
 
 // Badge Styles
-.activo {
-  color: $success-color;
+.pendiente {
+  color: $primary-color;
   font-weight: bold;
 }
 
-.inactivo {
-  color: $danger-color;
+.exitoso {
+  color: $pagado-color;
   font-weight: bold;
 }
 
@@ -119,12 +124,24 @@ body {
   margin-left: -1px;
 }
 
-.timeline-item-success {
-  border-left: 4px solid $success-color;
+.timeline-item-pendiente {
+  border-left: 4px solid $primary-color;
 }
 
-.timeline-item-danger {
-  border-left: 4px solid $danger-color;
+.timeline-item-pagado {
+  border-left: 4px solid $pagado-color;
+}
+
+.timeline-item.mora-baja {
+  border-left: 4px solid $mora-baja-color;
+}
+
+.timeline-item.mora-media {
+  border-left: 4px solid $mora-media-color;
+}
+
+.timeline-item.mora-alta {
+  border-left: 4px solid $mora-alta-color;
 }
 
 .timeline-item .timeline-icon {
@@ -138,6 +155,20 @@ body {
   border-radius: 50%;
 }
 
+.timeline-item .timeline-icon-pagado {
+  background: $pagado-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-item .timeline-icon-pagado::before {
+  content: '✓';
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
 .timeline-item .timeline-content {
   padding: 1rem;
 }
@@ -149,6 +180,55 @@ body {
 
 .timeline-item .timeline-content p {
   margin: 0.5rem 0;
+}
+
+// Color Dictionary Styles
+.color-dictionary {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
+}
+
+.color-dictionary-item {
+  display: flex;
+  align-items: center;
+}
+
+.color-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.color-box-mora-baja {
+  background-color: $mora-baja-color;
+}
+
+.color-box-mora-media {
+  background-color: $mora-media-color;
+}
+
+.color-box-mora-alta {
+  background-color: $mora-alta-color;
+}
+
+.color-box-pagado {
+  background-color: $pagado-color;
+}
+
+// Button Styles
+.btn-filter {
+  background-color: $primary-color;
+  color: $button-color;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: $border-radius;
+  transition: background-color 0.3s ease;
+}
+
+.btn-filter:hover {
+  background-color: darken($primary-color, 10%);
 }
 
 // Media Queries
