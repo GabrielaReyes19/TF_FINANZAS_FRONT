@@ -22,7 +22,12 @@
     <div class="info-section">
       <div class="form-group">
         <label for="fecha">Fecha del Credito:</label>
-        <input type="text" id="fecha" formControlName="FechaCredito" title="Fecha">
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha del Credito</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="FechaCredito" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
       </div>
       <div class="form-group">
         <label for="cuotas">Cuotas:</label>

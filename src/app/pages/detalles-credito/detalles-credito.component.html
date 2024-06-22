@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Detalles del Crédito</h1>
+  <div *ngIf="credito" class="card">
+    <div class="card-body">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <p><strong>Cliente:</strong> {{ credito.Cliente_id.dni }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Estado:</strong> <span [ngClass]="{'activo': credito.estado, 'inactivo': !credito.estado}">{{ credito.estado ? 'Activo' : 'Inactivo' }}</span></p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <p><strong>Fecha de Crédito:</strong> {{ formatFecha(credito.FechaCredito) }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Tipo de Crédito:</strong> {{ credito.TipoCredito_id.nombre }}</p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <p><strong>Tipo de Interés:</strong> {{ credito.TipoInteres_id.nombre }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Tasa de Interés:</strong> {{ credito.tasaInteres }}%</p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <p><strong>Monto:</strong> ${{ credito.monto }}</p>
+        </div>
+        <div class="col-md-6">
+          <p><strong>Número de Cuotas:</strong> {{ credito.numeroCuotas }}</p>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <p><strong>Plazo de Gracia:</strong> {{ credito.plazoGracia }} meses</p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end mb-3">
+        <button (click)="filtroCuotas('all')" class="btn btn-primary me-2">Todos</button>
+        <button (click)="filtroCuotas('activo')" class="btn btn-success me-2">Sin Pagar</button>
+        <button (click)="filtroCuotas('inactivo')" class="btn btn-danger">Pagado</button>
+      </div>
+      <h5 class="mt-4">Cuotas</h5>
+      <div class="timeline">
+        <div *ngFor="let cuota of cuotasFiltradas" class="timeline-item" [ngClass]="{'timeline-item-success': cuota.estado, 'timeline-item-danger': !cuota.estado}">
+          <div class="timeline-icon"></div>
+          <div class="timeline-content">
+            <h6>Cuota {{ cuota.numeroCuota }} - {{ cuota.mes }}</h6>
+            <p><strong>Monto:</strong> ${{ cuota.monto }}</p>
+            <p><strong>Interés:</strong> {{ cuota.interes }}</p>
+            <p><strong>Amortización:</strong> {{ cuota.amortizacion }}</p>
+            <p><strong>Estado:</strong> <span [ngClass]="{'activo': cuota.estado, 'inactivo': !cuota.estado}">{{ cuota.estado ? 'Activo' : 'Inactivo' }}</span></p>
+            <p><strong>Días de Mora:</strong> {{ cuota.diasMora }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

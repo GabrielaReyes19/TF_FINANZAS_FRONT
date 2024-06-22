@@ -1,8 +1,123 @@
 <app-navbar></app-navbar>
-<h1>Créditos</h1>
-
 <div class="container">
-    <div class="form-group">
-        <a href="/anadir-credito"><button type="button1">Agregar nuevo crédito</button></a>
-    </div>
+  <h1>Créditos</h1>
+  <div class="form-group">
+    <a href="/anadir-credito"><button type="button">Agregar nuevo crédito</button></a>
+  </div>
+
+  <h5 id="subtitulo-creditos">Busca créditos según el cliente, fecha u otros criterios</h5>
+  <div class="input-group">
+    <input
+      type="text"
+      id="buscar-cliente"
+      class="form-control"
+      placeholder="Buscar por DNI del cliente"
+      [(ngModel)]="searchCliente"
+      (input)="onSearch()"
+    />
+    <input
+      type="date"
+      id="buscar-fecha-desde"
+      class="form-control"
+      placeholder="Desde"
+      [(ngModel)]="searchFechaDesde"
+      (input)="onSearch()"
+    />
+    <input
+      type="date"
+      id="buscar-fecha-hasta"
+      class="form-control"
+      placeholder="Hasta"
+      [(ngModel)]="searchFechaHasta"
+      (input)="onSearch()"
+    />
+    <input
+      type="text"
+      id="buscar-estado"
+      class="form-control"
+      placeholder="Buscar por estado"
+      [(ngModel)]="searchEstado"
+      (input)="onSearch()"
+    />
+    <input
+      type="text"
+      id="buscar-tipo-credito"
+      class="form-control"
+      placeholder="Buscar por tipo de crédito"
+      [(ngModel)]="searchTipoCredito"
+      (input)="onSearch()"
+    />
+    <input
+      type="text"
+      id="buscar-tipo-interes"
+      class="form-control"
+      placeholder="Buscar por tipo de interés"
+      [(ngModel)]="searchTipoInteres"
+      (input)="onSearch()"
+    />
+    <input
+      type="text"
+      id="buscar-tasa-interes"
+      class="form-control"
+      placeholder="Buscar por tasa de interés"
+      [(ngModel)]="searchTasaInteres"
+      (input)="onSearch()"
+    />
+    <input
+      type="text"
+      id="buscar-monto"
+      class="form-control"
+      placeholder="Buscar por monto"
+      [(ngModel)]="searchMonto"
+      (input)="onSearch()"
+    />
+    <input
+      type="text"
+      id="buscar-cuotas"
+      class="form-control"
+      placeholder="Buscar por número de cuotas"
+      [(ngModel)]="searchCuotas"
+      (input)="onSearch()"
+    />
+    <input
+      type="text"
+      id="buscar-plazo-gracia"
+      class="form-control"
+      placeholder="Buscar por plazo de gracia"
+      [(ngModel)]="searchPlazoGracia"
+      (input)="onSearch()"
+    />
+    <button class="btn-buscar" type="button" (click)="onSearch()">🔍</button>
+  </div>
+
+  <div id="container-tabla-creditos">
+    <table id="tabla-creditos">
+      <thead class="custom-thead">
+        <tr class="custom-tr">
+          <th class="custom-th">Cliente</th>
+          <th class="custom-th">Estado</th>
+          <th class="custom-th">Fecha de Crédito</th>
+          <th class="custom-th">Tipo de Crédito</th>
+          <th class="custom-th">Tipo de Interés</th>
+          <th class="custom-th">Tasa de Interés</th>
+          <th class="custom-th">Monto</th>
+          <th class="custom-th">Número de Cuotas</th>
+          <th class="custom-th">Plazo de Gracia</th>
+        </tr>
+      </thead>
+      <tbody class="custom-tbody">
+        <tr class="custom-tr" *ngFor="let credito of filteredCreditos" (click)="navigateToCredito(credito._id)">
+          <td class="custom-td">{{ credito.Cliente_id.dni }}</td>
+          <td class="custom-td">{{ credito.estado ? 'Activo' : 'Inactivo' }}</td>
+          <td class="custom-td">{{ formatFecha(credito.FechaCredito) }}</td>
+          <td class="custom-td">{{ credito.TipoCredito_id.nombre }}</td>
+          <td class="custom-td">{{ credito.TipoInteres_id.nombre }}</td>
+          <td class="custom-td">{{ credito.tasaInteres }}</td>
+          <td class="custom-td">{{ credito.monto }}</td>
+          <td class="custom-td">{{ credito.numeroCuotas }}</td>
+          <td class="custom-td">{{ credito.plazoGracia }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

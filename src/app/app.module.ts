@@ -23,6 +23,17 @@ import { AnadirCreditoComponent } from './pages/anadir-credito/anadir-credito.co
 import { InventarioComponent } from './pages/inventario/inventario.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 
+// Import Angular Material modules
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+// Import Angular Material modules
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { DetallesCreditoComponent } from './pages/detalles-credito/detalles-credito.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +52,8 @@ import { ClientesComponent } from './pages/clientes/clientes.component';
     CreditsComponent,
     AnadirCreditoComponent,
     InventarioComponent,
-    ClientesComponent
+    ClientesComponent,
+    DetallesCreditoComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +62,15 @@ import { ClientesComponent } from './pages/clientes/clientes.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    // Add Angular Material modules here
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

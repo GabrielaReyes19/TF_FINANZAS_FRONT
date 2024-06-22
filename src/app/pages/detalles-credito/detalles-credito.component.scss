@@ -1,0 +1,161 @@
+// Variables
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$background-color: #f8f9fa;
+$text-color: #343a40;
+$border-radius: 0.25rem;
+$success-color: #28a745;
+$danger-color: #dc3545;
+
+// Global Styles
+body {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: 'Arial', sans-serif;
+}
+
+// Container
+.container {
+  width: 99%;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: $border-radius;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+// Card
+.card {
+  border: none;
+  border-radius: $border-radius;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+// Text Styles
+.text-center {
+  text-align: center;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+// Badge Styles
+.activo {
+  color: $success-color;
+  font-weight: bold;
+}
+
+.inactivo {
+  color: $danger-color;
+  font-weight: bold;
+}
+
+// Timeline Styles
+.timeline {
+  position: relative;
+  padding: 0;
+  margin: 2rem 0;
+  list-style: none;
+}
+
+.timeline:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: $secondary-color;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.timeline-item {
+  position: relative;
+  margin: 1rem 0;
+  padding: 1rem 2rem;
+  background: #fff;
+  border-radius: $border-radius;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  width: calc(50% - 2rem);
+  margin-left: calc(50% + 1rem);
+}
+
+.timeline-item:nth-child(odd) {
+  margin-left: 0;
+  margin-right: calc(50% + 1rem);
+}
+
+.timeline-item:before,
+.timeline-item:after {
+  content: "";
+  display: table;
+}
+
+.timeline-item:after {
+  clear: both;
+}
+
+.timeline-item:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: inherit;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.timeline-item-success {
+  border-left: 4px solid $success-color;
+}
+
+.timeline-item-danger {
+  border-left: 4px solid $danger-color;
+}
+
+.timeline-item .timeline-icon {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -8px;
+  width: 16px;
+  height: 16px;
+  background: $primary-color;
+  border-radius: 50%;
+}
+
+.timeline-item .timeline-content {
+  padding: 1rem;
+}
+
+.timeline-item .timeline-content h6 {
+  margin-top: 0;
+  color: $text-color;
+}
+
+.timeline-item .timeline-content p {
+  margin: 0.5rem 0;
+}
+
+// Media Queries
+@media (max-width: 768px) {
+  .timeline-item {
+    width: calc(100% - 2rem);
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

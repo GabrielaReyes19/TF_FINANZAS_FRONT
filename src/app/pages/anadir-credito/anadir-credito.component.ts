@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import * as moment from 'moment-timezone';
 import { environment } from 'src/enviroments/enviroment';
+
 
 @Component({
   selector: 'app-anadir-credito',
@@ -35,7 +37,7 @@ export class AnadirCreditoComponent implements OnInit {
   }
 
   obtenerClientes() {
-    this.http.get<any[]>(environment.apiUrl +'/clientes').subscribe(data => {
+    this.http.get<any[]>(environment.apiUrl + '/clientes').subscribe(data => {
       this.clientes = data;
     }, error => {
       console.error('Error al obtener clientes', error);
@@ -43,7 +45,7 @@ export class AnadirCreditoComponent implements OnInit {
   }
 
   obtenerTiposCredito() {
-    this.http.get<any[]>(environment.apiUrl +'/tiposcredito').subscribe(data => {
+    this.http.get<any[]>(environment.apiUrl + '/tiposcredito').subscribe(data => {
       this.tiposCredito = data;
     }, error => {
       console.error('Error al obtener tipos de crédito', error);
@@ -51,7 +53,7 @@ export class AnadirCreditoComponent implements OnInit {
   }
 
   obtenerTiposInteres() {
-    this.http.get<any[]>(environment.apiUrl +'/tiposinteres').subscribe(data => {
+    this.http.get<any[]>(environment.apiUrl + '/tiposinteres').subscribe(data => {
       this.tiposInteres = data;
     }, error => {
       console.error('Error al obtener tipos de interés', error);
@@ -59,9 +61,10 @@ export class AnadirCreditoComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.creditoForm.value)
     if (this.creditoForm.valid) {
-      this.http.post(environment.apiUrl +'/creditos', this.creditoForm.value).subscribe(response => {
+      const formValue = this.creditoForm.value;
+      formValue.FechaCredito = moment(formValue.FechaCredito).tz('America/Lima').toDate();
+      this.http.post(environment.apiUrl + '/creditos', formValue).subscribe(response => {
         console.log('Crédito creado', response);
       }, error => {
         console.error('Error al crear crédito', error);
