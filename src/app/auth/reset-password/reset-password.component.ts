@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { environment } from 'src/enviroments/enviroment';
 
 @Component({
@@ -21,32 +22,64 @@ export class ResetPasswordComponent {
   }
 
   onSubmit() {
-
     if (this.resetPasswordForm.valid) {
-      console.log('hola');
       const { email, newPass, repPass } = this.resetPasswordForm.value;
 
-      // Verificar que las contraseñas coincidan
       if (newPass !== repPass) {
-        console.log('Las contraseñas no coinciden');
+        Swal.fire({
+          title: 'Error',
+          text: 'Las contraseñas no coinciden.',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
         return;
       }
 
-      // Realizar la solicitud HTTP POST al servidor
-      this.http.post(environment.apiUrl+'/usuarios/reset-password', {
+      this.http.post(environment.apiUrl + '/usuarios/reset-password', {
         email: email,
         newPass: newPass
       }).subscribe(
         (response) => {
-          console.log('Respuesta del servidor:', response);
-          // Manejar la respuesta del servidor aquí
-          this.router.navigate(['/inicio']);
+          Swal.fire({
+            title: 'Contraseña Restablecida',
+            text: 'Su contraseña ha sido restablecida exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          }).then(() => {
+            this.router.navigate(['/inicio']);
+          });
         },
         (error) => {
-          console.error('Error al enviar la solicitud:', error);
-          // Manejar el error aquí
+          Swal.fire({
+            title: 'Error',
+            text: 'Hubo un error al restablecer su contraseña. Por favor, inténtelo de nuevo.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
         }
       );
+    } else {
+      this.showFormErrors();
+    }
+  }
+
+  showFormErrors(): void {
+    if (this.resetPasswordForm.get('email')?.invalid) {
+      Swal.fire({
+        title: 'Error en el formulario',
+        text: 'Por favor, ingrese un correo electrónico válido.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
+    if (this.resetPasswordForm.get('newPass')?.invalid || this.resetPasswordForm.get('repPass')?.invalid) {
+      Swal.fire({
+        title: 'Error en el formulario',
+        text: 'Por favor, ingrese una contraseña válida y asegúrese de que ambas contraseñas coincidan.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
     }
   }
 }

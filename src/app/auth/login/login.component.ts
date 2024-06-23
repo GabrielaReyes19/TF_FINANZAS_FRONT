@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 import { environment } from 'src/enviroments/enviroment';
 
 @Component({
@@ -31,27 +32,53 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      console.log('Formulario válido', this.loginForm.value);
-      
-      // Enviar solicitud HTTP POST
       this.http.post(environment.apiUrl + '/usuarios/login', {
         email: this.loginForm.value.email,
         password: this.loginForm.value.password
       }).subscribe(
         (response: any) => {
-          console.log('Respuesta del servidor:', response);
-          // Guardar la data en localStorage
-          localStorage.setItem('userData', JSON.stringify(response));
-          // Redirigir a la página de inicio
-          this.router.navigate(['/bienvenida']);
+          Swal.fire({
+            title: 'Login Exitoso',
+            text: '¡Bienvenido de nuevo!',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          }).then(() => {
+            localStorage.setItem('userData', JSON.stringify(response));
+            this.router.navigate(['/bienvenida']);
+          });
         },
         (error) => {
-          console.error('Error al enviar la solicitud:', error);
-          // Manejar el error aquí
+          Swal.fire({
+            title: 'Error',
+            text: 'Correo o contraseña incorrectos. Por favor, inténtelo de nuevo.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
         }
       );
     } else {
-      console.log('Formulario no válido');
+      // Mostrar mensajes de error específicos
+      this.showFormErrors();
+    }
+  }
+
+  showFormErrors(): void {
+    if (this.email?.invalid) {
+      Swal.fire({
+        title: 'Error en el formulario',
+        text: 'Por favor, ingrese un correo electrónico válido.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
+    if (this.password?.invalid) {
+      Swal.fire({
+        title: 'Error en el formulario',
+        text: 'Por favor, ingrese una contraseña válida.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
     }
   }
 }
