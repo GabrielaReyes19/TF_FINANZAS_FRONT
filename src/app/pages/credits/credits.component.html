@@ -99,7 +99,7 @@
           <th class="custom-th">Fecha de Crédito</th>
           <th class="custom-th">Tipo de Crédito</th>
           <th class="custom-th">Tipo de Interés</th>
-          <th class="custom-th">Tasa de Interés</th>
+          <th class="custom-th">Tasa de Interés(%)</th>
           <th class="custom-th">Monto</th>
           <th class="custom-th">Número de Cuotas</th>
           <th class="custom-th">Plazo de Gracia</th>
@@ -112,8 +112,8 @@
           <td class="custom-td">{{ formatFecha(credito.FechaCredito) }}</td>
           <td class="custom-td">{{ credito.TipoCredito_id.nombre }}</td>
           <td class="custom-td">{{ credito.TipoInteres_id.nombre }}</td>
-          <td class="custom-td">{{ credito.tasaInteres }}</td>
-          <td class="custom-td">{{ credito.monto }}</td>
+          <td class="custom-td">{{ credito.tasaInteres }} %</td>
+          <td class="custom-td">${{ credito.monto }}</td>
           <td class="custom-td">{{ credito.numeroCuotas }}</td>
           <td class="custom-td">{{ credito.plazoGracia }}</td>
         </tr>

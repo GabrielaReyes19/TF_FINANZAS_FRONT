@@ -36,11 +36,11 @@
             </tr>
             <tr>
               <td>Interés</td>
-              <td>{{ cuota.interes }}</td>
+              <td>${{ cuota.interes }}</td>
             </tr>
             <tr>
               <td>Amortización</td>
-              <td>{{ cuota.amortizacion }}</td>
+              <td>${{ cuota.amortizacion }}</td>
             </tr>
             <tr>
               <td>Días de Mora</td>
@@ -48,17 +48,17 @@
             </tr>
             <tr>
               <td>Monto de Mora</td>
-              <td>{{ cuota.montoMora }}</td>
+              <td>${{ cuota.montoMora }}</td>
             </tr>
             <tr>
               <td>Saldo</td>
-              <td>{{ cuota.saldo }}</td>
+              <td>${{ cuota.saldo }}</td>
             </tr>
           </tbody>
         </table>
 
         <div class="factura-footer text-right">
-          <p><strong>Total:</strong> {{ cuota.monto + cuota.montoMora }}</p>
+          <p><strong>Total:</strong> ${{ cuota.monto + cuota.montoMora }}</p>
         </div>
       </div>
     </div>
