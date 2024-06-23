@@ -33,6 +33,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { DetallesCreditoComponent } from './pages/detalles-credito/detalles-credito.component';
+import { CuentaCorrienteComponent } from './pages/cuenta-corriente/cuenta-corriente.component';
+import { CuotaDetalleComponent } from './pages/cuota-detalle/cuota-detalle.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { DetallesCreditoComponent } from './pages/detalles-credito/detalles-cred
     AnadirCreditoComponent,
     InventarioComponent,
     ClientesComponent,
-    DetallesCreditoComponent
+    DetallesCreditoComponent,
+    CuentaCorrienteComponent,
+    CuotaDetalleComponent
   ],
   imports: [
     BrowserModule,

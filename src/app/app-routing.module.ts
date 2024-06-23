@@ -15,6 +15,8 @@ import { InventarioModificarComponent } from './pages/inventario-modificar/inven
 import { InventarioComponent } from './pages/inventario/inventario.component';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { DetallesCreditoComponent } from './pages/detalles-credito/detalles-credito.component';
+import { CuentaCorrienteComponent } from './pages/cuenta-corriente/cuenta-corriente.component';
+import { CuotaDetalleComponent } from './pages/cuota-detalle/cuota-detalle.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/inicio', pathMatch:'full'},
@@ -33,6 +35,8 @@ const routes: Routes = [
   { path: 'inventario', component: InventarioComponent },
   { path: 'clientes', component: ClientesComponent },
   { path: 'detalles-credito/:id', component: DetallesCreditoComponent },
+  { path: 'cuenta-corriente', component: CuentaCorrienteComponent },
+  { path: 'cuota-detalle/:id', component: CuotaDetalleComponent },
 ];
 
 @NgModule({

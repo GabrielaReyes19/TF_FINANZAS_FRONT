@@ -61,12 +61,51 @@ h3 {
   padding: 5px;
   font-size: 15px;
   font-family: Inter;
-  margin-right: 30px;
 }
 
 .info-section div span {
   font-size: 14px;
   line-height: 2;
+}
+
+.select-custom {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  font-family: Inter;
+  background-color: white;
+  cursor: pointer;
+}
+
+.product-section {
+  display: flex;
+  flex-direction: column; /* Asegura que los productos se apilen verticalmente */
+  margin-bottom: 10px; /* Espacio entre cada producto */
+}
+
+.product-section div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px; /* Espacio entre los elementos dentro de un producto */
+}
+
+.product-section div label {
+  margin-right: 10px;
+  width: 150px; /* Ajusta según tu preferencia */
+}
+
+.product-section div input,
+.product-section div select {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.product-section button {
+  align-self: flex-start;
+  margin-top: 10px; /* Espacio entre el botón y el campo anterior */
 }
 
 .away button {
@@ -87,7 +126,7 @@ h3 {
   }
 }
 
-.away{
+.away {
   font-weight: bold;
   font-size: 40px;
 }

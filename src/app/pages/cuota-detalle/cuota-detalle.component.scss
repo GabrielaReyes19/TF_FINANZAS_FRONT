@@ -1,0 +1,132 @@
+:host {
+  display: block;
+  background-color: #f8f9fa;
+  color: #343a40;
+  font-family: 'Arial', sans-serif;
+}
+
+.container {
+  width: 95%;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.card {
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.factura {
+  width: 700px;
+  max-width: 100%;
+  padding: 20px;
+  border: 10px solid #333333;
+
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.factura-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.factura-header, .factura-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.factura-header div, .factura-footer div {
+  flex: 1;
+}
+
+.factura-header div:nth-child(2), .factura-footer div:nth-child(2) {
+  text-align: right;
+}
+
+.factura-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.factura-table th, .factura-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.factura-table th {
+  background-color: #f7f7f7;
+  font-weight: bold;
+}
+
+.factura-total {
+  text-align: right;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.btn-primary, .btn-success {
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+  color: #fff;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+/* Estilos de impresión */
+@media print {
+  body * {
+      visibility: hidden;
+  }
+
+  #factura, #factura * {
+      visibility: visible;
+  }
+
+  #factura {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      padding: 0;
+      border: none;
+      height: auto;
+      box-shadow: none;
+  }
+}

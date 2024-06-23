@@ -1,81 +1,88 @@
 <app-navbar></app-navbar>
-
 <h1>Ventas</h1>
 
-<h2>Información general</h2>
-
-<div class="container">
+<form [formGroup]="ventaForm">
+  <h2>Información general</h2>
+  <div class="container">
     <div class="info-section">
-        <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre">
-        </div>
-        <div class="form-group">
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" name="apellido" >
-        </div>
-        <div class="form-group">
-            <label for="dni">DNI:</label>
-            <input type="text" id="dni" name="dni">
-        </div>
+      <div class="form-group">
+        <label for="dni">Busca el cliente por DNI:</label>
+        <input type="text" id="dni" (input)="onDniInput($event)" title="DNI">
+      </div>
+      <div class="form-group">
+        <label for="cliente">Seleccionar cliente:</label>
+        <select id="cliente" formControlName="Cliente_id" title="Cliente" class="select-custom">
+          <option *ngFor="let cliente of clientesFiltrados" [value]="cliente._id">{{ cliente.nombres }} {{ cliente.apellidos }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="fecha">Fecha:</label>
+        <span id="fecha">{{ currentDate }}</span> <!-- Llenado automático por el sistema -->
+      </div>
+      <div class="form-group">
+        <label for="boleta">N° Boleta:</label>
+        <span id="boleta">{{ numeroBoleta }}</span> <!-- Llenado automático por el sistema -->
+      </div>
+      <div class="payment-method">
+        <label for="forma-pago">Forma de pago:</label>
+        <label>
+          <input type="radio" id="efectivo" name="forma-pago" value="efectivo" formControlName="formaPago">
+          Efectivo
+        </label>
+        <label>
+          <input type="radio" id="tarjeta" name="forma-pago" value="tarjeta" formControlName="formaPago">
+          Tarjeta
+        </label>
+      </div>
     </div>
+  </div>
 
+  <h3>Productos</h3>
+  <div class="container">
     <div class="info-section">
-        <div class="form-group">
-            <label for="fecha">Fecha:</label>
-            <span id="fecha">16 de junio de 2024</span> <!-- Llenado automático por el sistema -->
-        </div>
-        <div class="form-group">
-            <label for="boleta">N° Boleta:</label>
-            <span id="boleta">000541</span> <!-- Llenado automático por el sistema -->
-        </div>
-        <div class="payment-method">
-            <label for="forma-pago">Forma de pago:</label>
-            <label>
-                <input type="radio" id="efectivo" name="forma-pago" checked>
-                Efectivo
-            </label>
-            <label>
-                <input type="radio" id="tarjeta" name="forma-pago">
-                Tarjeta
-            </label>
-        </div>
+      <div class="form-group">
+        <label for="producto">Producto:</label>
+        <select id="producto" formControlName="productoId" class="select-custom">
+          <option *ngFor="let producto of productosDisponibles" [value]="producto._id">{{ producto.nombre }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" formControlName="cantidad" min="1">
+      </div>
+      <div class="form-group">
+        <button type="button" (click)="addProducto()">Añadir a la lista</button>
+      </div>
     </div>
-</div>
+  </div>
 
-<h3>Productos</h3>
-
-<div class="container">
-    <div class="info-section">
+  <h3>Lista de Productos</h3>
+  <div class="container" id="listaProductos">
+    <div *ngFor="let producto of listaProductos; let i = index">
+      <div class="info-section">
         <div class="form-group">
-            <label for="nombre">Producto:</label>
-            <input type="text" id="nombre" name="nombre">
+          <label>{{ producto.nombre }}</label>
         </div>
         <div class="form-group">
-            <label for="apellido">Cantidad:</label>
-            <input type="text" id="apellido" name="apellido" >
+          <label>{{ producto.cantidad }}</label>
         </div>
-
         <div class="form-group">
-            <button type="button1">Añadir a la lista</button>
+          <label>{{ producto.precio | currency }}</label>
         </div>
-
+        <div class="form-group">
+          <button type="button" (click)="removeProducto(i)">Eliminar</button>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<h3>Lista de Productos</h3>
+  <div class="away">
+    <button type="button" (click)="cancelarVenta()">Cancelar</button>
+    <button type="button" (click)="generarBoleta()">Generar Boleta</button>
+  </div>
 
-<div class="container" id="listaProductos">
-    <!-- Aquí se añadirán dinámicamente los productos -->
-     <br><br><br><br><br><br><br><br><br><br>
-</div>
-
-<div class="away">
-    <button type="button">Cancelar</button>
-    <button type="button">Generar Boleta</button>
-</div>
-
-<div class="away2">
+  <div class="away2">
     <label for="total">Total a pagar: </label>
-    <span id="totalPagar">$0.00</span>
-</div>
+    <span id="totalPagar">{{ totalPagar | currency }}</span>
+  </div>
+</form>

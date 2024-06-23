@@ -1,0 +1,65 @@
+<app-navbar></app-navbar>
+<div class="container mt-5" *ngIf="cuota">
+  <h1 class="text-center mb-4">Detalles de la Cuota</h1>
+  <div id="cuota-detail" class="card">
+    <div class="card-body">
+      <div id="factura" class="factura">
+        <h2 class="factura-title">Factura</h2>
+        
+        <div class="factura-header">
+          <div>
+            <p><strong>Fecha de Vencimiento:</strong> {{ cuota.fechaFormateada }}</p>
+            <p><strong>Número de Cuota:</strong> {{ cuota.numeroCuota }}</p>
+
+            <p *ngIf="pago"><strong>Fecha de Pago:</strong> {{ pago.fechaPagoFormateada }}</p>
+          </div>
+          <div class="text-right">
+            <p><strong>Estado:</strong> 
+              <span [ngClass]="{'pendiente': cuota.estado, 'exitoso': !cuota.estado}">
+                {{ cuota.estado ? 'Pendiente a Pago' : 'Pago Exitoso' }}
+              </span>
+            </p>
+          </div>
+        </div>
+        
+        <table class="factura-table">
+          <thead>
+            <tr>
+              <th>Descripción</th>
+              <th>Monto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cuota</td>
+              <td>{{ cuota.monto === 0 ? 'Plazo de Gracia' : '$' + cuota.monto }}</td>
+            </tr>
+            <tr>
+              <td>Interés</td>
+              <td>{{ cuota.interes }}</td>
+            </tr>
+            <tr>
+              <td>Amortización</td>
+              <td>{{ cuota.amortizacion }}</td>
+            </tr>
+            <tr>
+              <td>Días de Mora</td>
+              <td>{{ cuota.diasMora }}</td>
+            </tr>
+            <tr>
+              <td>Saldo</td>
+              <td>{{ cuota.saldo }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="factura-footer text-right">
+          <p><strong>Total:</strong> {{ cuota.monto }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button *ngIf="cuota.estado" (click)="pagarCuota()" class="btn btn-success mt-3">Pagar</button>
+  <button (click)="printFactura()" class="btn btn-primary mt-3">Imprimir</button>
+</div>

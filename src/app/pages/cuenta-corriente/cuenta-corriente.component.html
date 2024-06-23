@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+
+<div class="container" *ngIf="cuentaCorriente">
+  <div class="header">
+    <h2>Detalles de la Cuenta Corriente</h2>
+    <button (click)="actualizarDatos()">Actualizar</button>
+  </div>
+
+  <div class="status">
+    <div>
+      <i class="icon fas fa-user"></i>
+      <span>{{ cuentaCorriente.nombre }}</span>
+    </div>
+    <div>
+      <i class="icon fas fa-wallet"></i>
+      <span>{{ cuentaCorriente.saldo | currency }}</span>
+    </div>
+  </div>
+
+  <div class="filters">
+    <label for="month">Filtrar por mes:</label>
+    <select id="month" (change)="filtrarTransacciones()">
+      <option value="all">Todos</option>
+      <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
+    </select>
+
+    <label for="year">Filtrar por año:</label>
+    <select id="year" (change)="filtrarTransacciones()">
+      <option value="all">Todos</option>
+      <option *ngFor="let year of getYears()" [value]="year">{{ year }}</option>
+    </select>
+
+    <label for="descripcion">Filtrar por descripción:</label>
+    <input type="text" id="descripcion" (input)="filtrarTransacciones()" placeholder="Descripción">
+  </div>
+
+  <div class="table-container">
+    <h3>Transacciones</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Tipo</th>
+          <th>Monto</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaccion of transaccionesFiltradas">
+          <td>{{ transaccion.fecha | date:'medium' }}</td>
+          <td [ngClass]="{'deposito': transaccion.tipo === 'Entrada', 'retiro': transaccion.tipo === 'Salida'}">{{ transaccion.tipo }}</td>
+          <td>{{ transaccion.monto | currency }}</td>
+          <td>{{ transaccion.descripcion }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
