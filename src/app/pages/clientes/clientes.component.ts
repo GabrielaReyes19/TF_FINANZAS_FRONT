@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'; // Importar SweetAlert para la confirmación
 import { environment } from 'src/enviroments/enviroment';
 
 @Component({
@@ -52,12 +53,53 @@ export class ClientesComponent implements OnInit {
     );
   }
 
-  onSubmit() {
+  formatFechaPago(fechaPago: string): string {
+    const dia = fechaPago.substring(8, 10); // Extraer los caracteres del día
+    return `Los ${dia} de cada mes`;
+  }
+
+  onSearch() {
+    if (this.searchDNI.trim() !== '') {
+      this.filteredClientes = this.clientes.filter(cliente =>
+        cliente.dni.toString().toLowerCase().startsWith(this.searchDNI.toLowerCase())
+      );
+    } else {
+      this.filteredClientes = [...this.clientes]; // Si la búsqueda está vacía, mostrar todos los clientes
+    }
+  }
+
+  confirmarRegistro(): void {
+    if (this.clienteForm.invalid) {
+      Swal.fire({
+        title: 'Error',
+        text: 'El formulario es inválido. Por favor, revise los campos y complete todos los datos requeridos.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
+
+    Swal.fire({
+      title: 'Confirmar Registro',
+      text: `¿Estás seguro de que deseas registrar al cliente con DNI ${this.clienteForm.get('dni')?.value}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, registrar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.registrarCliente();
+      }
+    });
+  }
+
+  registrarCliente(): void {
     if (this.clienteForm.valid) {
       this.http.post(environment.apiUrl + '/clientes', this.clienteForm.value).subscribe(
         response => {
           console.log('Cliente registrado con éxito', response);
           this.getClientes(); // Refresh the list after a new client is added
+          this.clienteForm.reset(); // Reset the form after successful registration
         },
         error => {
           console.error('Error registrando cliente', error);
@@ -67,18 +109,8 @@ export class ClientesComponent implements OnInit {
       console.log('Formulario inválido');
     }
   }
-  formatFechaPago(fechaPago: string): string {
-    const dia = fechaPago.substring(8, 10); // Extraer los caracteres del día
-    return `Los ${dia} de cada mes`;
-  }
-  
-  onSearch() {
-    if (this.searchDNI.trim() !== '') {
-      this.filteredClientes = this.clientes.filter(cliente =>
-        cliente.dni.toString().toLowerCase().startsWith(this.searchDNI.toLowerCase())
-      );
-    } else {
-      this.filteredClientes = [...this.clientes]; // Si la búsqueda está vacía, mostrar todos los clientes
-    }
+
+  onSubmit() {
+    this.confirmarRegistro();
   }
 }

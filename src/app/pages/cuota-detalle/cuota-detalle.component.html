@@ -47,6 +47,10 @@
               <td>{{ cuota.diasMora }}</td>
             </tr>
             <tr>
+              <td>Monto de Mora</td>
+              <td>{{ cuota.montoMora }}</td>
+            </tr>
+            <tr>
               <td>Saldo</td>
               <td>{{ cuota.saldo }}</td>
             </tr>
@@ -54,12 +58,12 @@
         </table>
 
         <div class="factura-footer text-right">
-          <p><strong>Total:</strong> {{ cuota.monto }}</p>
+          <p><strong>Total:</strong> {{ cuota.monto + cuota.montoMora }}</p>
         </div>
       </div>
     </div>
   </div>
 
-  <button *ngIf="cuota.estado" (click)="pagarCuota()" class="btn btn-success mt-3">Pagar</button>
+  <button *ngIf="cuota.estado" (click)="confirmarPago()" class="btn btn-success mt-3">Pagar</button>
   <button (click)="printFactura()" class="btn btn-primary mt-3">Imprimir</button>
 </div>

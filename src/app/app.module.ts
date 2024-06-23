@@ -28,13 +28,16 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-// Import Angular Material modules
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+
+// Import NgxChartsModule
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DetallesCreditoComponent } from './pages/detalles-credito/detalles-credito.component';
 import { CuentaCorrienteComponent } from './pages/cuenta-corriente/cuenta-corriente.component';
 import { CuotaDetalleComponent } from './pages/cuota-detalle/cuota-detalle.component';
+import { BienvenidaComponent } from './pages/bienvenida/bienvenida.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,8 @@ import { CuotaDetalleComponent } from './pages/cuota-detalle/cuota-detalle.compo
     ClientesComponent,
     DetallesCreditoComponent,
     CuentaCorrienteComponent,
-    CuotaDetalleComponent
+    CuotaDetalleComponent,
+    BienvenidaComponent
   ],
   imports: [
     BrowserModule,
@@ -71,10 +75,11 @@ import { CuotaDetalleComponent } from './pages/cuota-detalle/cuota-detalle.compo
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
-
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    // Add NgxChartsModule
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

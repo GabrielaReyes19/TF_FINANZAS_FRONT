@@ -1,1 +1,52 @@
 <app-navbar></app-navbar>
+<div class="dashboard-container">
+    <div class="chart-row">
+      <div class="chart-container">
+        <h2>Top Clientes por Créditos</h2>
+        <ngx-charts-pie-chart
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="topClientes"
+          [gradient]="gradient"
+          [legend]="showLegend"
+          [animations]="animations"
+          [legendPosition]="legendPosition">
+        </ngx-charts-pie-chart>
+      </div>
+  
+      <div class="chart-container">
+        <h2>Ventas por Cliente</h2>
+        <ngx-charts-bar-vertical
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="ventasPorCliente"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [animations]="animations"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          [legendPosition]="legendPosition">
+        </ngx-charts-bar-vertical>
+      </div>
+    </div>
+  
+    <div class="chart-row">
+      <div class="chart-container">
+        <h2>Créditos por Cliente</h2>
+        <ngx-charts-pie-chart
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="creditosPorCliente"
+          [gradient]="gradient"
+          [legend]="showLegend"
+          [animations]="animations"
+          [legendPosition]="legendPosition">
+        </ngx-charts-pie-chart>
+      </div>
+    </div>
+  </div>
+  

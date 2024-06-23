@@ -10,6 +10,8 @@ import { environment } from 'src/enviroments/enviroment';
 export class CuentaCorrienteComponent implements OnInit {
   cuentaCorriente: any; // Variable para almacenar los datos de la cuenta corriente
   transaccionesFiltradas: any[] = [];
+  saldoFiltrado: number = 0; // Variable para almacenar el saldo según los filtros
+  filtersApplied: boolean = false; // Variable para rastrear si se han aplicado filtros
   months = [
     { name: 'Enero', value: 1 },
     { name: 'Febrero', value: 2 },
@@ -45,6 +47,7 @@ export class CuentaCorrienteComponent implements OnInit {
       response => {
         this.cuentaCorriente = response;
         this.transaccionesFiltradas = response.transacciones;
+        this.actualizarSaldoFiltrado();
       },
       error => {
         console.error('Error al obtener la cuenta corriente:', error);
@@ -73,5 +76,29 @@ export class CuentaCorrienteComponent implements OnInit {
 
       return matchMonth && matchYear && matchDescripcion;
     });
+
+    this.filtersApplied = month !== 'all' || year !== 'all' || descripcion !== '';
+    this.actualizarSaldoFiltrado();
+  }
+
+  actualizarSaldoFiltrado() {
+    this.saldoFiltrado = this.transaccionesFiltradas.reduce((total, transaccion) => {
+      return total + (transaccion.tipo === 'Entrada' ? transaccion.monto : -transaccion.monto);
+    }, 0);
+  }
+
+  imprimirTransacciones() {
+    const printArea = document.querySelector('.print-area');
+    if (!printArea) return;
+
+    const printContents = printArea.innerHTML;
+    const originalContents = document.body.innerHTML;
+
+    if (printContents) {
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+      window.location.reload(); // Recargar la página para restaurar el contenido original
+    }
   }
 }

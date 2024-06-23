@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment-timezone';
+import Swal from 'sweetalert2'; // Importar SweetAlert para la confirmación
 import { environment } from 'src/enviroments/enviroment';
 
 @Component({
@@ -144,17 +145,67 @@ export class AnadirCreditoComponent implements OnInit {
     this.creditoForm.patchValue({ monto: this.totalPagar });
   }
 
-  onSubmit() {
+  confirmarPago(): void {
+    if (this.creditoForm.invalid) {
+      Swal.fire({
+        title: 'Error',
+        text: 'Faltan campos por completar. Por favor, revise los campos y complete todos los datos requeridos.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
+
+    Swal.fire({
+      title: 'Confirmar Creación de Crédito',
+      text: `¿Estás seguro de que deseas proceder con la creación del crédito?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, crear',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.procederPago();
+      }
+    });
+  }
+
+  procederPago(): void {
     if (this.creditoForm.valid) {
       const formValue = this.creditoForm.getRawValue(); // Get raw value to include the 'monto' field
       formValue.FechaCredito = moment(formValue.FechaCredito).tz('America/Lima').toDate();
       this.http.post(environment.apiUrl + '/creditos', formValue).subscribe(response => {
+        Swal.fire({
+          title: 'Éxito',
+          text: 'Crédito creado correctamente.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
         console.log('Crédito creado', response);
       }, error => {
+        let errorMessage = 'Hubo un error al crear el crédito. Por favor, intente nuevamente.';
+        if (error.error && error.error.mensaje) {
+          errorMessage = error.error.mensaje;
+        }
+        Swal.fire({
+          title: 'Error',
+          text: errorMessage,
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
         console.error('Error al crear crédito', error);
       });
     } else {
-      alert('Formulario inválido. Por favor, revise los campos y complete todos los datos requeridos.');
+      Swal.fire({
+        title: 'Error',
+        text: 'Formulario inválido. Por favor, revise los campos y complete todos los datos requeridos.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
     }
+  }
+
+  onSubmit() {
+    this.confirmarPago();
   }
 }

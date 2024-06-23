@@ -2,7 +2,31 @@
 <h1>Inventario</h1>
 
 <div class="away">
-    <a href="/inventario-anadir"><button type="button" class="btn-verde">Añadir</button></a>
-    <a href="/inventario-modificar"><button type="button" class="btn-azul">Modificar</button></a>
-    <button type="button" class="btn-rojo">Eliminar</button>
+    <button type="button" class="btn-verde" (click)="crearProducto()">Añadir</button>
+</div>
+
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Descripción</th>
+                <th>Tipo de Producto</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let producto of productos">
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.precio }}</td>
+                <td>{{ producto.descripcion }}</td>
+                <td>{{ producto.tipoProducto }}</td>
+                <td class="actions">
+                    <button type="button" class="btn-azul" (click)="editarProducto(producto)">Modificar</button>
+                    <button type="button" class="btn-rojo" (click)="eliminarProducto(producto)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

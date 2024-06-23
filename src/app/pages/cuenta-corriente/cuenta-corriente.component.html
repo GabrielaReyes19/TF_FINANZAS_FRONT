@@ -21,7 +21,9 @@
     <label for="month">Filtrar por mes:</label>
     <select id="month" (change)="filtrarTransacciones()">
       <option value="all">Todos</option>
-      <option *ngFor="let month of months" [value]="month.value">{{ month.name }}</option>
+      <option *ngFor="let month of months" [value]="month.value">
+        {{ month.name }}
+      </option>
     </select>
 
     <label for="year">Filtrar por año:</label>
@@ -31,10 +33,32 @@
     </select>
 
     <label for="descripcion">Filtrar por descripción:</label>
-    <input type="text" id="descripcion" (input)="filtrarTransacciones()" placeholder="Descripción">
+    <input
+      type="text"
+      id="descripcion"
+      (input)="filtrarTransacciones()"
+      placeholder="Descripción"
+    />
   </div>
-
-  <div class="table-container">
+  <div class="print-button">
+    <button (click)="imprimirTransacciones()">Imprimir</button>
+  </div>
+  <div class="table-container print-area">
+    <br />
+    <h3 class="print-header">
+      Saldo Cuenta Corriente General:
+      <span>{{ cuentaCorriente.saldo | currency }}</span>
+    </h3>
+    <div class="saldo-filtros">
+      <span>
+        Saldo según Filtros:
+        {{
+          filtersApplied
+            ? (saldoFiltrado | currency)
+            : (cuentaCorriente.saldo | currency)
+        }}
+      </span>
+    </div>
     <h3>Transacciones</h3>
     <table class="table">
       <thead>
@@ -47,8 +71,15 @@
       </thead>
       <tbody>
         <tr *ngFor="let transaccion of transaccionesFiltradas">
-          <td>{{ transaccion.fecha | date:'medium' }}</td>
-          <td [ngClass]="{'deposito': transaccion.tipo === 'Entrada', 'retiro': transaccion.tipo === 'Salida'}">{{ transaccion.tipo }}</td>
+          <td>{{ transaccion.fecha | date : "medium" }}</td>
+          <td
+            [ngClass]="{
+              deposito: transaccion.tipo === 'Entrada',
+              retiro: transaccion.tipo === 'Salida'
+            }"
+          >
+            {{ transaccion.tipo }}
+          </td>
           <td>{{ transaccion.monto | currency }}</td>
           <td>{{ transaccion.descripcion }}</td>
         </tr>

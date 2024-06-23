@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
           // Guardar la data en localStorage
           localStorage.setItem('userData', JSON.stringify(response));
           // Redirigir a la página de inicio
-          this.router.navigate(['/ventas']);
+          this.router.navigate(['/bienvenida']);
         },
         (error) => {
           console.error('Error al enviar la solicitud:', error);

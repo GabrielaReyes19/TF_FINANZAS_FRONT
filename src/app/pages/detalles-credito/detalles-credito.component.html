@@ -54,16 +54,16 @@
           <p><strong>Plazo de Gracia:</strong> {{ credito.plazoGracia }} meses</p>
         </div>
       </div>
-      <!-- Botones de filtro -->
       <div class="d-flex justify-content-end mb-3">
         <button (click)="filtroCuotas('all')" class="btn btn-filter me-2">Todos</button>
         <button (click)="filtroCuotas('activo')" class="btn btn-filter btn-success me-2"> Pendiente a Pago</button>
         <button (click)="filtroCuotas('inactivo')" class="btn btn-filter btn-danger me-2"> Pago Exitoso</button>
         <button (click)="filtroPorMes()" class="btn btn-filter btn-warning me-2">Elige el Mes</button>
         <button (click)="filtroCuotasMontoCero()" class="btn btn-filter btn-info">Plazos de Gracia</button>
+        <button (click)="imprimir()" class="btn btn-filter btn-primary">Imprimir</button>
       </div>
       <h5 class="mt-4">Cuotas</h5>
-      <div class="timeline">
+      <div class="timeline" #cuotasTable>
         <div *ngFor="let cuota of cuotasFiltradas" 
              class="timeline-item" 
              [ngClass]="{
@@ -87,6 +87,36 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div style="display: none;">
+    <div id="printTable" #printTable>
+      <table>
+        <thead>
+          <tr>
+            <th>Número de Cuota</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+            <th>Interés</th>
+            <th>Amortización</th>
+            <th>Estado</th>
+            <th>Días de Mora</th>
+            <th>Saldo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cuota of cuotasFiltradas">
+            <td>{{ cuota.numeroCuota }}</td>
+            <td>{{ cuota.fechaFormateada }}</td>
+            <td>{{ cuota.monto === 0 ? 'Plazo de Gracia' : '$' + cuota.monto }}</td>
+            <td>{{ cuota.interes }}</td>
+            <td>{{ cuota.amortizacion }}</td>
+            <td>{{ cuota.estado ? 'Pendiente a Pago' : 'Pago Exitoso' }}</td>
+            <td>{{ cuota.diasMora }}</td>
+            <td>{{ cuota.saldo }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 :host {
     display: block;
     background-color: #f0f2f5;
@@ -40,12 +43,14 @@
 
 .filters {
     display: flex;
+    margin-top: 10px;
     justify-content: flex-end;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .filters label {
     margin-right: 10px;
+    margin-left: 10px;
 }
 
 .filters select, .filters input {
@@ -53,6 +58,7 @@
     border-radius: 5px;
     border: 1px solid #ddd;
     margin-left: 10px;
+    margin-right: 10px;
     cursor: pointer;
 }
 
@@ -72,7 +78,7 @@
 }
 
 .table th {
-    background-color: #007bff;
+    background-color: #0c64c2;
     color: white;
     font-weight: bold;
 }
@@ -135,3 +141,31 @@ h3 {
     font-size: 1.5em;
     color: #007bff;
 }
+
+.saldo-filtros {
+    text-align: right;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.print-button {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.print-button button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.print-button button:hover {
+    background-color: #0056b3;
+}
+

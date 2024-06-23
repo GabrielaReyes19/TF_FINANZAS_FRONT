@@ -17,6 +17,7 @@ import { ClientesComponent } from './pages/clientes/clientes.component';
 import { DetallesCreditoComponent } from './pages/detalles-credito/detalles-credito.component';
 import { CuentaCorrienteComponent } from './pages/cuenta-corriente/cuenta-corriente.component';
 import { CuotaDetalleComponent } from './pages/cuota-detalle/cuota-detalle.component';
+import { BienvenidaComponent } from './pages/bienvenida/bienvenida.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'/inicio', pathMatch:'full'},
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'detalles-credito/:id', component: DetallesCreditoComponent },
   { path: 'cuenta-corriente', component: CuentaCorrienteComponent },
   { path: 'cuota-detalle/:id', component: CuotaDetalleComponent },
+  { path: 'bienvenida', component: BienvenidaComponent },
 ];
 
 @NgModule({

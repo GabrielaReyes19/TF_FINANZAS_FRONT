@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 import 'moment/locale/es';
+import Swal from 'sweetalert2'; // Importar SweetAlert para la confirmación
 import { environment } from 'src/enviroments/enviroment';
 
 @Component({
@@ -55,6 +56,22 @@ export class CuotaDetalleComponent implements OnInit {
     }
   }
 
+  confirmarPago(): void {
+    const montoTotal = this.cuota.monto + (this.cuota.montoMora > 0 ? this.cuota.montoMora : 0);
+    Swal.fire({
+      title: 'Confirmar Pago',
+      text: `¿Estás seguro de que deseas realizar el pago de $${montoTotal}? ${this.cuota.montoMora > 0 ? 'Incluye mora de $' + this.cuota.montoMora : ''}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, pagar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.pagarCuota();
+      }
+    });
+  }
+
   pagarCuota(): void {
     if (!this.cuota || !this.cuota._id) {
       console.error('No se puede procesar el pago porque la cuota no está disponible');
@@ -62,7 +79,7 @@ export class CuotaDetalleComponent implements OnInit {
     }
 
     const pagoData = {
-      montoTotal: this.cuota.monto,
+      montoTotal: this.cuota.monto + (this.cuota.montoMora > 0 ? this.cuota.montoMora : 0),
       Cuota_id: this.cuota._id
     };
 

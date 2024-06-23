@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import Swal from 'sweetalert2'; // Importar SweetAlert para la confirmación
 import { environment } from 'src/enviroments/enviroment';
 
 @Component({
@@ -130,12 +131,50 @@ export class VentasComponent implements OnInit {
     this.numeroBoleta = this.generarNumeroBoleta();  // Regenerar el número de boleta al cancelar
   }
 
+  confirmarVenta(): void {
+    if (this.ventaForm.invalid) {
+      Swal.fire({
+        title: 'Error',
+        text: 'El formulario es inválido. Por favor, revise los campos y complete todos los datos requeridos.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    }
+
+    // Construir el resumen de la venta
+    let productosResumen = '';
+    this.listaProductos.forEach(producto => {
+      productosResumen += `${producto.nombre} - ${producto.cantidad} unidades - $${producto.precio.toFixed(2)}\n`;
+    });
+
+    Swal.fire({
+      title: 'Confirmar Venta',
+      html: `<p><strong>Total a Pagar:</strong> $${this.totalPagar.toFixed(2)}</p>
+             <pre>${productosResumen}</pre>
+             <p><strong>Cliente:</strong> ${this.clientes.find(cliente => cliente._id === this.ventaForm.value.Cliente_id)?.nombres}</p>`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, vender',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.generarBoleta();
+      }
+    });
+  }
+
   generarBoleta() {
     const clienteId = this.ventaForm.get('Cliente_id')?.value;
     const formaPago = this.ventaForm.get('formaPago')?.value;
 
     if (!clienteId) {
-      alert('Debe seleccionar un cliente válido.');
+      Swal.fire({
+        title: 'Error',
+        text: 'Debe seleccionar un cliente válido.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
       return;
     }
 
@@ -154,5 +193,9 @@ export class VentasComponent implements OnInit {
     }, error => {
       console.error('Error al crear venta', error);
     });
+  }
+
+  onSubmit() {
+    this.confirmarVenta();
   }
 }

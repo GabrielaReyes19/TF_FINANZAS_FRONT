@@ -26,11 +26,11 @@
       <div class="payment-method">
         <label for="forma-pago">Forma de pago:</label>
         <label>
-          <input type="radio" id="efectivo" name="forma-pago" value="efectivo" formControlName="formaPago">
+          <input type="radio" id="efectivo" name="formaPago" value="efectivo" formControlName="formaPago">
           Efectivo
         </label>
         <label>
-          <input type="radio" id="tarjeta" name="forma-pago" value="tarjeta" formControlName="formaPago">
+          <input type="radio" id="tarjeta" name="formaPago" value="tarjeta" formControlName="formaPago">
           Tarjeta
         </label>
       </div>
@@ -78,7 +78,7 @@
 
   <div class="away">
     <button type="button" (click)="cancelarVenta()">Cancelar</button>
-    <button type="button" (click)="generarBoleta()">Generar Boleta</button>
+    <button type="button" (click)="confirmarVenta()">Generar Venta</button>
   </div>
 
   <div class="away2">

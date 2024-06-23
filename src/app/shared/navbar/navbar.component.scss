@@ -49,4 +49,16 @@
   navbar-brand .croissant{
     margin-top: 100px;
   }
-  
+  .navbar-nav {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    font-family: 'Inter', sans-serif;
+
+  }
+
+  .navbar-nav.logout-nav {
+    margin: 0;
+    padding: 0;
+    margin-left: auto; /* Pushes logout to the right */
+  }
