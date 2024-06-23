@@ -2,31 +2,45 @@
 <h1>Inventario</h1>
 
 <div class="away">
-    <button type="button" class="btn-verde" (click)="crearProducto()">Añadir</button>
+  <button type="button" class="btn-verde" (click)="crearProducto()">
+    Añadir
+  </button>
 </div>
 
 <div class="container">
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Descripción</th>
-                <th>Tipo de Producto</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let producto of productos">
-                <td>{{ producto.nombre }}</td>
-                <td>${{ producto.precio }}</td>
-                <td>{{ producto.descripcion }}</td>
-                <td>{{ producto.tipoProducto }}</td>
-                <td class="actions">
-                    <button type="button" class="btn-azul" (click)="editarProducto(producto)">Modificar</button>
-                    <button type="button" class="btn-rojo" (click)="eliminarProducto(producto)">Eliminar</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Descripción</th>
+        <th>Tipo de Producto</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let producto of productos">
+        <td>{{ producto.nombre }}</td>
+        <td>${{ producto.precio }}</td>
+        <td>{{ producto.descripcion }}</td>
+        <td>{{ producto.tipoProducto }}</td>
+        <td class="actions">
+          <button
+            type="button"
+            class="btn-azul"
+            (click)="editarProducto(producto)"
+          >
+            Modificar
+          </button>
+          <button
+            type="button"
+            class="btn-rojo"
+            (click)="eliminarProducto(producto)"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
