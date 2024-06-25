@@ -16,6 +16,8 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     localStorage.removeItem('userData'); // Elimina los datos de usuario del almacenamiento local
+    localStorage.removeItem('intro_tutorial_shown'); // Elimina el indicador del tutorial mostrado
+    localStorage.removeItem('intro_tutorial_bienvenida_shown');
     this.router.navigate(['/inicio']); // Redirige a la página de inicio de sesión
   }
 

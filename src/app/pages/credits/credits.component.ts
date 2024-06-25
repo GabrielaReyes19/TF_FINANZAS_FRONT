@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import introJs from 'intro.js';
 import { environment } from 'src/enviroments/enviroment';
-import { Router } from '@angular/router'; // Importa el Router
 
 @Component({
   selector: 'app-credits',
   templateUrl: './credits.component.html',
   styleUrls: ['./credits.component.scss']
 })
-export class CreditsComponent implements OnInit {
+export class CreditsComponent implements OnInit, AfterViewInit {
   creditos: any[] = [];
   filteredCreditos: any[] = [];
   searchCliente: string = '';
@@ -26,6 +27,17 @@ export class CreditsComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerCreditos();
+  }
+
+  ngAfterViewInit(): void {
+    const userData = localStorage.getItem('userData');
+    const tutorialShown = localStorage.getItem('intro_tutorial_shown');
+    if (userData) {
+    if (!tutorialShown) {
+      setTimeout(() => this.startIntro(), 500); // Agrega un pequeño retraso para asegurar que los elementos estén cargados
+    }
+    }
+
   }
 
   obtenerCreditos(): void {
@@ -46,6 +58,74 @@ export class CreditsComponent implements OnInit {
 
   navigateToCredito(id: string): void {
     this.router.navigate(['/detalles-credito', id]);
+  }
+
+  startIntro() {
+    const intro = introJs();
+    intro.setOptions({
+      steps: [
+        {
+          intro: "Bienvenido a la sección de créditos. Aquí puedes ver todos los créditos registrados."
+        },
+        {
+          element: '#buscar-cliente',
+          intro: "Puedes buscar créditos específicos por el DNI del cliente."
+        },
+        {
+          element: '#buscar-fecha-desde',
+          intro: "Puedes filtrar los créditos desde una fecha específica."
+        },
+        {
+          element: '#buscar-fecha-hasta',
+          intro: "Puedes filtrar los créditos hasta una fecha específica."
+        },
+        {
+          element: '#buscar-estado',
+          intro: "Puedes buscar créditos por estado (Activo/Inactivo)."
+        },
+        {
+          element: '#buscar-tipo-credito',
+          intro: "Puedes buscar créditos por tipo de crédito."
+        },
+        {
+          element: '#buscar-tipo-interes',
+          intro: "Puedes buscar créditos por tipo de interés."
+        },
+        {
+          element: '#buscar-tasa-interes',
+          intro: "Puedes buscar créditos por tasa de interés."
+        },
+        {
+          element: '#buscar-monto',
+          intro: "Puedes buscar créditos por monto."
+        },
+        {
+          element: '#buscar-cuotas',
+          intro: "Puedes buscar créditos por número de cuotas."
+        },
+        {
+          element: '#buscar-plazo-gracia',
+          intro: "Puedes buscar créditos por plazo de gracia."
+        },
+        {
+          element: '#tabla-creditos',
+          intro: "Haz clic en cualquier fila para ver más detalles sobre el crédito.",
+          position: 'top'
+        }
+      ]
+    });
+
+    intro.oncomplete(() => {
+      // Marca el tutorial como mostrado en localStorage
+      localStorage.setItem('intro_tutorial_shown', 'true');
+    });
+
+    intro.onexit(() => {
+      // Marca el tutorial como mostrado en localStorage si el usuario lo cierra
+      localStorage.setItem('intro_tutorial_shown', 'true');
+    });
+
+    intro.start();
   }
 
   onSearch(): void {
