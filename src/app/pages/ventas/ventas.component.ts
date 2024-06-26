@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import Swal from 'sweetalert2'; // Importar SweetAlert para la confirmación
+import Swal from 'sweetalert2';
+import jsPDF from 'jspdf'; // Importar jsPDF
 import { environment } from 'src/enviroments/enviroment';
 
 @Component({
@@ -39,11 +40,10 @@ export class VentasComponent implements OnInit {
     this.obtenerClientes();
     this.obtenerProductos();
 
-    // Subscribirse al observable para manejar la búsqueda de clientes
     this.searchSubject.pipe(
-      debounceTime(300),  // Espera 300ms después de que el usuario deje de escribir
-      distinctUntilChanged(),  // Ignorar si el nuevo valor es igual al anterior
-      map(dni => dni.trim().toLowerCase())  // Normalizar el valor
+      debounceTime(300),
+      distinctUntilChanged(),
+      map(dni => dni.trim().toLowerCase())
     ).subscribe(dni => {
       this.filtrarClientes(dni);
     });
@@ -66,7 +66,6 @@ export class VentasComponent implements OnInit {
     });
   }
 
-  // Método para manejar la entrada del usuario en el campo de búsqueda de DNI
   onDniInput(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     this.searchSubject.next(inputElement.value);
@@ -81,7 +80,6 @@ export class VentasComponent implements OnInit {
       );
     }
 
-    // Si hay exactamente un cliente coincidente, seleccionarlo automáticamente
     if (this.clientesFiltrados.length === 1) {
       this.ventaForm.patchValue({
         Cliente_id: this.clientesFiltrados[0]._id
@@ -128,7 +126,7 @@ export class VentasComponent implements OnInit {
     this.ventaForm.reset({ formaPago: 'efectivo' });
     this.listaProductos = [];
     this.totalPagar = 0;
-    this.numeroBoleta = this.generarNumeroBoleta();  // Regenerar el número de boleta al cancelar
+    this.numeroBoleta = this.generarNumeroBoleta();
   }
 
   confirmarVenta(): void {
@@ -142,7 +140,6 @@ export class VentasComponent implements OnInit {
       return;
     }
 
-    // Construir el resumen de la venta
     let productosResumen = '';
     this.listaProductos.forEach(producto => {
       productosResumen += `${producto.nombre} - ${producto.cantidad} unidades - $${producto.precio.toFixed(2)}\n`;
@@ -150,7 +147,7 @@ export class VentasComponent implements OnInit {
 
     Swal.fire({
       title: 'Confirmar Venta',
-      html: `<p><strong>Total a Pagar:</strong> $${this.totalPagar.toFixed(2)}</p>
+      html: `<p><strong>Total de Pago:</strong> $${this.totalPagar.toFixed(2)}</p>
              <pre>${productosResumen}</pre>
              <p><strong>Cliente:</strong> ${this.clientes.find(cliente => cliente._id === this.ventaForm.value.Cliente_id)?.nombres}</p>`,
       icon: 'warning',
@@ -189,10 +186,43 @@ export class VentasComponent implements OnInit {
 
     this.http.post(environment.apiUrl + '/ventas', ventaData).subscribe(response => {
       console.log('Venta creada', response);
+      this.mostrarOpcionImprimir(response); // Pasar la respuesta completa
       this.cancelarVenta();
     }, error => {
       console.error('Error al crear venta', error);
     });
+  }
+
+  mostrarOpcionImprimir(ventaData: any) {
+    Swal.fire({
+      title: 'Venta Confirmada',
+      text: '¿Desea imprimir la factura?',
+      icon: 'success',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, imprimir',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.imprimirFactura(ventaData);
+      }
+    });
+  }
+
+  imprimirFactura(ventaData: any) {
+    const doc = new jsPDF();
+    doc.text('Factura de Venta', 10, 10);
+    doc.text(`Fecha: ${new Date(ventaData.fechaVenta).toLocaleDateString('es-ES')}`, 10, 20);
+    doc.text(`N° Boleta: ${ventaData.numeroBoleta}`, 10, 30);
+
+    let y = 40;
+    ventaData.productos.forEach((producto: any) => {
+      doc.text(`Nombre del Producto: ${producto.nombre} | Cantidad: ${producto.cantidad}| Unidades: $${producto.precio.toFixed(2)}`, 10, y);
+      y += 10;
+    });
+
+    doc.text(`Total de Pago: $${ventaData.montoTotal.toFixed(2)}`, 10, y + 10);
+
+    doc.save(`factura_${ventaData.numeroBoleta}.pdf`);
   }
 
   onSubmit() {
